@@ -26,8 +26,6 @@ function playRound() {
         return `You win!, ${playerSelection} beats ${computerSelection}`;
     }
     else if (playerSelection === computerSelection) {
-        userScore++;
-        computerScore++;
         return "Nani!!! Its a draw";
     }
     else {
