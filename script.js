@@ -52,6 +52,18 @@ function game() {
     console.log(playRound() );
     console.log(playRound() );
     console.log(playRound() );
+    console.log(`User : ${userScore}, Computer : ${computerScore}`)
+    winnerAnnouncer();
 }
+
+function winnerAnnouncer() {
+    if (userScore > computerScore) {
+        console.log("User Wins!!!");    
+    } else if (userScore < computerScore) {
+        console.log("Computer Wins!!!");
+    } else {
+        console.log("Its A draw!!!")
+    }
+} 
 
 game();
