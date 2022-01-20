@@ -8,9 +8,9 @@ function computerPlay() {
 //A function to generate random number between 0 to 100(exclusive)
 let randomNumGen = () => {return Math.random() * 100};
 
-function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toUpperCase();
-    computerSelection = computerSelection.toUpperCase();
+function playRound() {
+    let playerSelection = prompt("Choose [Rock, Paper, Scissor] : ");
+    computerSelection = computerPlay().toUpperCase();
     if (playerSelection === "ROCK" && computerSelection === "SCISSOR") return `You win!, ${playerSelection} beats ${computerSelection}`;
     else if (playerSelection === "Scissor" && computerSelection === "PAPER") return `You win!, ${playerSelection} beats ${computerSelection}`;
     else if (playerSelection === "Paper" && computerSelection === "ROCK") return `You win!, ${playerSelection} beats ${computerSelection}`;
@@ -18,15 +18,12 @@ function playRound(playerSelection, computerSelection) {
     else return `You lose! ${computerSelection} beats ${playerSelection}`;
 }
 
-let playerSelection = prompt("Enter your choice : ");
-let computerSelection = computerPlay();
-
 function game() {
-    console.log(playRound (playerSelection, computerPlay()) );
-    console.log(playRound (playerSelection, computerSelection) );
-    console.log(playRound (playerSelection, computerPlay()) );
-    console.log(playRound (playerSelection, computerPlay()) );
-    console.log(playRound (playerSelection, computerSelection) );
+    console.log(playRound() );
+    console.log(playRound() );
+    console.log(playRound() );
+    console.log(playRound() );
+    console.log(playRound() );
 }
 
 game();
