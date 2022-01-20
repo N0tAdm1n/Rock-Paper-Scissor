@@ -1,3 +1,5 @@
+let userScore = 0; //global variable for storing user's score
+let computerScore = 0; //global variable for storing computer's scoer
 // A function that returns rock paper scissor randomly
 function computerPlay() {
     let randomNum = randomNumGen();
@@ -11,11 +13,27 @@ let randomNumGen = () => {return Math.random() * 100};
 function playRound() {
     let playerSelection = userInput();
     let computerSelection = computerPlay().toUpperCase();
-    if (playerSelection === "ROCK" && computerSelection === "SCISSOR") return `You win!, ${playerSelection} beats ${computerSelection}`;
-    else if (playerSelection === "Scissor" && computerSelection === "PAPER") return `You win!, ${playerSelection} beats ${computerSelection}`;
-    else if (playerSelection === "PAPER" && computerSelection === "ROCK") return `You win!, ${playerSelection} beats ${computerSelection}`;
-    else if (playerSelection === computerSelection) return "Nani!!! Its a draw";
-    else return `You lose! ${computerSelection} beats ${playerSelection}`;
+    if (playerSelection === "ROCK" && computerSelection === "SCISSOR") { 
+        userScore++;
+        return `You win!, ${playerSelection} beats ${computerSelection}`;
+    }    
+    else if (playerSelection === "Scissor" && computerSelection === "PAPER") {
+        userScore++;
+        return `You win!, ${playerSelection} beats ${computerSelection}`;
+    }
+    else if (playerSelection === "PAPER" && computerSelection === "ROCK") {
+        userScore++;
+        return `You win!, ${playerSelection} beats ${computerSelection}`;
+    }
+    else if (playerSelection === computerSelection) {
+        userScore++;
+        computerScore++;
+        return "Nani!!! Its a draw";
+    }
+    else {
+        computerScore++;
+        return `You lose! ${computerSelection} beats ${playerSelection}`;
+    }
 }
 // Function to get user Input
 function userInput() {
