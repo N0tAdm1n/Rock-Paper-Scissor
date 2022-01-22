@@ -45,11 +45,6 @@ function userInput() {
 }
 
 function game() {
-    console.log(playRound() );
-    console.log(playRound() );
-    console.log(playRound() );
-    console.log(playRound() );
-    console.log(playRound() );
     console.log(`User : ${userScore}, Computer : ${computerScore}`)
     winnerAnnouncer();
 }
