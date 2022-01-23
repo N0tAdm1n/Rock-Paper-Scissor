@@ -80,6 +80,7 @@ function replayGame() {
   userScoreDiv.textContent = 0;
   compScoreDiv.textContent = 0;
   dialog.textContent = "";
+  resultDiv.textContent = "";
 }
 
 const userScoreDiv = document.querySelector("#playerScore");
