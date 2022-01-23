@@ -13,7 +13,11 @@ let randomNumGen = () => {
 };
 // Play a round of rock paper scissor
 function playRound() {
-  let playerSelection = this.id.toUpperCase();
+    if(userScore >= 5 || computerScore >= 5) {
+        this.removeEventListener('click',playRound);
+        return;
+    }
+    let playerSelection = this.id.toUpperCase();
   let computerSelection = computerPlay().toUpperCase();
   if (playerSelection === "ROCK" && computerSelection === "SCISSOR") {
     userScore++;
@@ -67,7 +71,7 @@ const dialog = document.querySelector("#dialog");
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
-  if (userScore < 5 || computerScore < 5) {
+  if (!(userScore >= 5 || computerScore >= 5 )) {
     button.addEventListener("click", playRound);
   }
 });
