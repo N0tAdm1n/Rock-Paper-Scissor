@@ -13,29 +13,30 @@ let randomNumGen = () => {
 };
 // Play a round of rock paper scissor
 function playRound() {
-    if(userScore >= 5 || computerScore >= 5) {
-        this.removeEventListener('click',playRound);
-        return;
-    }
+  if (userScore < 5 && computerScore < 5) {
     let playerSelection = this.id.toUpperCase();
-  let computerSelection = computerPlay().toUpperCase();
-  if (playerSelection === "ROCK" && computerSelection === "SCISSOR") {
-    userScore++;
-    dialog.textContent = `You win!, ${playerSelection} beats ${computerSelection}`;
-  } else if (playerSelection === "Scissor" && computerSelection === "PAPER") {
-    userScore++;
-    dialog.textContent = `You win!, ${playerSelection} beats ${computerSelection}`;
-  } else if (playerSelection === "PAPER" && computerSelection === "ROCK") {
-    userScore++;
-    dialog.textContent = `You win!, ${playerSelection} beats ${computerSelection}`;
-  } else if (playerSelection === computerSelection) {
-    dialog.textContent = "Nani!!! Its a draw";
-  } else {
-    computerScore++;
-    dialog.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+    let computerSelection = computerPlay().toUpperCase();
+    if (playerSelection === "ROCK" && computerSelection === "SCISSOR") {
+      userScore++;
+      dialog.textContent = `You win!, ${playerSelection} beats ${computerSelection}`;
+    } else if (playerSelection === "Scissor" && computerSelection === "PAPER") {
+      userScore++;
+      dialog.textContent = `You win!, ${playerSelection} beats ${computerSelection}`;
+    } else if (playerSelection === "PAPER" && computerSelection === "ROCK") {
+      userScore++;
+      dialog.textContent = `You win!, ${playerSelection} beats ${computerSelection}`;
+    } else if (playerSelection === computerSelection) {
+      dialog.textContent = "Nani!!! Its a draw";
+    } else {
+      computerScore++;
+      dialog.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+    }
+    userScoreDiv.textContent = userScore.toString();
+    compScoreDiv.textContent = `${computerScore}`;
   }
-  userScoreDiv.textContent = userScore.toString();
-  compScoreDiv.textContent = `${computerScore}`;
+  if (userScore == 5 || computerScore == 5) {
+    tally();
+  }
 }
 // Function to get user Input
 // function userInput() {
@@ -47,6 +48,14 @@ function playRound() {
 //         userInput();
 //     }
 // }
+
+function tally() {
+  if (userScore > computerScore) {
+    resultDiv.textContent = "You have beaten the computer";
+  } else {
+    resultDiv.textContent = "You are bested by a computer";
+  }
+}
 
 function game() {
   console.log(`User : ${userScore}, Computer : ${computerScore}`);
@@ -65,13 +74,24 @@ function winnerAnnouncer() {
 
 // game();
 
+function replayGame() {
+  userScore = 0;
+  computerScore = 0;
+  userScoreDiv.textContent = 0;
+  compScoreDiv.textContent = 0;
+  dialog.textContent = "";
+}
+
 const userScoreDiv = document.querySelector("#playerScore");
 const compScoreDiv = document.querySelector("#compScore");
 const dialog = document.querySelector("#dialog");
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
-  if (!(userScore >= 5 || computerScore >= 5 )) {
-    button.addEventListener("click", playRound);
-  }
+  button.addEventListener("click", playRound);
 });
+
+const replay = document.querySelector("#replay");
+replay.addEventListener("click", replayGame);
+
+const resultDiv = document.querySelector("#result");
