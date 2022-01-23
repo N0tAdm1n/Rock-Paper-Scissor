@@ -1,8 +1,5 @@
-const buttons = Array.from(document.querySelectorAll('button'));
-let userScore = 0; //global variable for storing user's score
-let computerScore = 0; //global variable for storing computer's scoer
-buttons.forEach(function(button) { button.addEventListener('click',playRound)});
-
+let userScore = 1; //global variable for storing user's score
+let computerScore = 1; //global variable for storing computer's scoer
 // A function that returns rock paper scissor randomly
 function computerPlay() {
     let randomNum = randomNumGen();
@@ -13,9 +10,8 @@ function computerPlay() {
 //A function to generate random number between 0 to 100(exclusive)
 let randomNumGen = () => {return Math.random() * 100};
 // Play a round of rock paper scissor
-function playRound(e) {
-    // console.log(this.id);
-    let playerSelection = userInput(this.id);
+function playRound() {
+    let playerSelection = userInput();
     let computerSelection = computerPlay().toUpperCase();
     if (playerSelection === "ROCK" && computerSelection === "SCISSOR") { 
         userScore++;
@@ -38,10 +34,14 @@ function playRound(e) {
     }
 }
 // Function to get user Input
-function userInput(buttonInput) {
-    if(buttonInput == 'rock') return 'ROCK';
-    if(buttonInput == 'paper') return 'PAPER';
-    if(buttonInput == 'scissor') return 'SCISSOR';
+function userInput() {
+    let result = prompt("Choose [Rock, Paper, Scissor] : ").toUpperCase();
+    if(result === "ROCK" || result === "PAPER" || result === "SCISSOR") {
+        return result;
+    }
+    else {
+        userInput();
+    }
 }
 
 function game() {
@@ -59,4 +59,9 @@ function winnerAnnouncer() {
     }
 } 
 
-// game();
+game();
+
+const userScoreDiv = document.querySelector('#playerScore');
+const compScoreDiv = document.querySelector('#compScore');
+userScoreDiv.textContent = userScore.toString();
+compScoreDiv.textContent = `${computerScore}`;
